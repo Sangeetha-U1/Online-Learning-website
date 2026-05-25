@@ -106,4 +106,30 @@
     });
     
 })(jQuery);
+function login() {
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    let validEmail = "admin@gmail.com";
+    let validPassword = "12345678";
+
+    // ❌ empty check
+    if (email === "" || password === "") {
+        alert("Email and Password are required ❌");
+        return;
+    }
+
+    // ❌ password length check
+    if (password.length < 8) {
+        alert("Password must be at least 8 characters ❌");
+        return;
+    }
+
+    // ❌ login check
+    if (email === validEmail && password === validPassword) {
+        alert("Login successful ✅ Welcome!");
+    } else {
+        alert("Invalid email or password ❌");
+    }
+}
 
