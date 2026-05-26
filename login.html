@@ -39,14 +39,14 @@
             min-height: 100vh;
         }
 
-        .login-wrapper {
-            min-height: calc(100vh - 140px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 15px;
-        }
-
+        
+.login-wrapper {
+    min-height: calc(100vh - 140px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 15px;
+}
         .login-box {
             width: 100%;
             max-width: 420px;
@@ -64,6 +64,9 @@
         .brand h2 {
             color: #06BBCC;
         }
+        #registerForm {
+    display: none;
+}
     </style>
 </head>
 
@@ -82,7 +85,7 @@
                 <a href="index.html" class="nav-item nav-link ">Home</a>
                 <a href="about.html" class="nav-item nav-link">About</a>
                 <a href="courses.html" class="nav-item nav-link">Courses</a>
-                        <a href="team.html" class="nav-item nav-link active">Our Team</a>
+                        <a href="team.html" class="nav-item nav-link">Our Team</a>
                    
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
@@ -90,49 +93,68 @@
         </div>
     </nav>
 <!-- Login Section -->
+    <!-- LOGIN FORM -->
 <div class="login-wrapper">
-
     <div class="login-box">
 
-        <div class="brand">
-            <h2><i class="fa fa-book me-2"></i>eLEARNING</h2>
-            <p class="text-muted">Login to your account</p>
+    <div class="brand">
+        <h2><i class="fa fa-book me-2"></i>eLEARNING</h2>
+        <p class="text-muted">Login / Register</p>
+    </div>
+<p id="msg" style="text-align:center; font-weight:600;"></p>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm">
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" id="email" class="form-control" placeholder="Enter email">
         </div>
 
-        <form>
-            <div class="mb-3">
-                
-                <label>Email</label>
-                <input type="email" id="email" class="form-control" placeholder="Enter email">
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" id="password" class="form-control" placeholder="Enter password">
+        </div>
 
-            </div>
-
-            <div class="mb-3">
-                <label>Password</label>
-                 <input type="password" id="password" class="form-control" placeholder="Enter password">
-            </div>
-
-            <div class="d-flex justify-content-between mb-3">
-                <div>
-                    <input type="checkbox"> Remember
-                </div>
-                <a href="#">Forgot password?</a>
-            </div>
-
-            
-            <button type="button" class="btn btn-primary w-100 py-2" onclick="login()">
-    Login
-</button>
-
-            <p class="text-center mt-3">
-                Don’t have an account? <a href="#">Register</a>
-            </p>
-        </form>
-
-    </div>
-
+       <div class="d-flex mb-3">
+    <button type="button" class="btn btn-primary w-50" onclick="showLogin()">Login</button>
+    <button type="button" class="btn btn-outline-primary w-50" onclick="showRegister()">Register</button>
 </div>
 
+    </form>
+
+    <hr>
+    <!-- REGISTER FORM -->
+    <form id="registerForm">
+
+        <div class="mb-3">
+            <label>Full Name</label>
+            <input type="text" id="regName" class="form-control" placeholder="Enter name">
+        </div>
+
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" id="regEmail" class="form-control" placeholder="Enter email">
+        </div>
+
+        <div class="mb-3">
+            <label>Password</label>
+            <input type="password" id="regPassword" class="form-control" placeholder="Create password">
+        </div>
+
+        <div class="mb-3">
+            <label>Confirm Password</label>
+            <input type="password" id="regConfirm" class="form-control" placeholder="Confirm password">
+        </div>
+
+       <div class="d-flex mb-3">
+    <button type="button" class="btn btn-primary w-50" onclick="showLogin()">Login</button>
+    <button type="button" class="btn btn-outline-primary w-50" onclick="showRegister()">Register</button>
+</div>
+
+    </form>
+
+</div></div>
 <!-- Footer -->
 <footer class="bg-dark text-light pt-5">
     <div class="container py-4 text-center">

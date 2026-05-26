@@ -106,30 +106,57 @@
     });
     
 })(jQuery);
-function login() {
+
+window.login = function () {
     let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value.trim();
 
-    let validEmail = "admin@gmail.com";
-    let validPassword = "12345678";
-
-    // ❌ empty check
     if (email === "" || password === "") {
-        alert("Email and Password are required ❌");
+        alert("Fill all fields ❌");
         return;
     }
 
-    // ❌ password length check
-    if (password.length < 8) {
-        alert("Password must be at least 8 characters ❌");
-        return;
-    }
+    let storedEmail = localStorage.getItem("userEmail");
+    let storedPass = localStorage.getItem("userPassword");
 
-    // ❌ login check
-    if (email === validEmail && password === validPassword) {
-        alert("Login successful ✅ Welcome!");
+    if (email === storedEmail && password === storedPass) {
+        alert("Login success ✅");
     } else {
-        alert("Invalid email or password ❌");
+        alert("Invalid login ❌");
     }
-}
+};
 
+window.register = function () {
+    let name = document.getElementById("regName").value.trim();
+    let email = document.getElementById("regEmail").value.trim();
+    let pass = document.getElementById("regPassword").value.trim();
+    let confirm = document.getElementById("regConfirm").value.trim();
+
+    let msg = document.getElementById("msg");
+
+    if (msg) msg.innerText = "";
+
+    if (!name || !email || !pass || !confirm) {
+        alert("Fill all fields ❌");
+        return;
+    }
+
+    if (pass !== confirm) {
+        alert("Password mismatch ❌");
+        return;
+    }
+
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPassword", pass);
+
+    alert("Registered successfully ✅");
+};
+window.showLogin = function () {
+    document.getElementById("loginForm").style.display = "block";
+    document.getElementById("registerForm").style.display = "none";
+};
+
+window.showRegister = function () {
+    document.getElementById("loginForm").style.display = "none";
+    document.getElementById("registerForm").style.display = "block";
+};

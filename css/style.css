@@ -432,3 +432,9 @@
     padding-right: 0;
     border-right: none;
 }
+#registerForm {
+    display: none;
+}
+#loginForm {
+    display: block;
+}
