@@ -58,7 +58,11 @@
                    
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <a href="login.html" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block">Login<i class="fa fa-arrow-right ms-3"></i></a>
+<a id="authBtn"
+   href="login.html"
+   class="btn btn-primary py-4 px-lg-3 d-none d-lg-block">
+   Login<i class="fa fa-arrow-right ms-3"></i>
+</a>
         </div>
     </nav>
     <!-- Navbar End -->
@@ -562,7 +566,11 @@
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
+<script>
+if (localStorage.getItem("isLoggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+</script>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

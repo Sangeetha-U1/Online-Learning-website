@@ -107,34 +107,12 @@
     
 })(jQuery);
 
-window.login = function () {
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value.trim();
-
-    if (email === "" || password === "") {
-        alert("Fill all fields ❌");
-        return;
-    }
-
-    let storedEmail = localStorage.getItem("userEmail");
-    let storedPass = localStorage.getItem("userPassword");
-
-    if (email === storedEmail && password === storedPass) {
-        alert("Login success ✅");
-    } else {
-        alert("Invalid login ❌");
-    }
-};
-
+// REGISTER
 window.register = function () {
     let name = document.getElementById("regName").value.trim();
     let email = document.getElementById("regEmail").value.trim();
     let pass = document.getElementById("regPassword").value.trim();
     let confirm = document.getElementById("regConfirm").value.trim();
-
-    let msg = document.getElementById("msg");
-
-    if (msg) msg.innerText = "";
 
     if (!name || !email || !pass || !confirm) {
         alert("Fill all fields ❌");
@@ -142,15 +120,46 @@ window.register = function () {
     }
 
     if (pass !== confirm) {
-        alert("Password mismatch ❌");
+        alert("Password not matching ❌");
         return;
     }
 
+    localStorage.setItem("userName", name);
     localStorage.setItem("userEmail", email);
     localStorage.setItem("userPassword", pass);
 
-    alert("Registered successfully ✅");
+    alert("Registered successfully ✅ Now login");
+
+    showLogin();
 };
+
+
+// LOGIN
+window.login = function () {
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    let storedEmail = localStorage.getItem("userEmail");
+    let storedPass = localStorage.getItem("userPassword");
+
+    if (!email || !password) {
+        alert("Fill all fields ❌");
+        return;
+    }
+
+    if (email === storedEmail && password === storedPass) {
+        alert("Login successful ✅");
+
+        localStorage.setItem("isLoggedIn", "true");
+
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid email or password ❌");
+    }
+};
+
+
+// SHOW FORMS
 window.showLogin = function () {
     document.getElementById("loginForm").style.display = "block";
     document.getElementById("registerForm").style.display = "none";
@@ -160,3 +169,22 @@ window.showRegister = function () {
     document.getElementById("loginForm").style.display = "none";
     document.getElementById("registerForm").style.display = "block";
 };
+
+
+// LOGOUT BUTTON CONTROL
+window.addEventListener("load", function () {
+    const authBtn = document.getElementById("authBtn");
+
+    if (!authBtn) return;
+
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        authBtn.innerHTML = `Logout<i class="fa fa-sign-out-alt ms-3"></i>`;
+        authBtn.href = "#";
+
+        authBtn.onclick = function (e) {
+            e.preventDefault();
+            localStorage.removeItem("isLoggedIn");
+            window.location.href = "login.html";
+        };
+    }
+});
